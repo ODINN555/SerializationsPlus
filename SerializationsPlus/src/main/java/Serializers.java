@@ -48,9 +48,9 @@ public class Serializers {
                 return ItemStack.deserialize(map);
             }
         });
-        add(new Serializer<List>("List",List.class) {
+        add(new Serializer<ArrayList>("ArrayList",ArrayList.class) {
             @Override
-            public Map<String, Object> serializeValue(List object) {
+            public Map<String, Object> serializeValue(ArrayList object) {
                 Map<String,Object> map = new HashMap<>();
                 List<byte[]> arr = new ArrayList<>();
                 for (Object o : object)
@@ -61,8 +61,8 @@ public class Serializers {
             }
 
             @Override
-            public List deserializeValue(Map<String, Object> map) {
-                List objects = new ArrayList();
+            public ArrayList deserializeValue(Map<String, Object> map) {
+                ArrayList objects = new ArrayList();
                 List<byte[]> arr = (List<byte[]>) map.get("list");
                 for (byte[] bytes : arr)
                     objects.add(Serializations.deserialize(bytes));
@@ -70,7 +70,7 @@ public class Serializers {
                 return objects;
             }
         });
-        add(new Serializer<HashMap>("Map",Map.class) {
+        add(new Serializer<HashMap>("HashMap",HashMap.class) {
             @Override
             public Map<String, Object> serializeValue(HashMap object) {
                 Map<String,Object> map = new HashMap<>();
