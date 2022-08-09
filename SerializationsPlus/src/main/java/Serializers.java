@@ -19,27 +19,27 @@ public class Serializers {
 
         serializers.add(new Serializer<Enchantment>("Enchantment",Enchantment.class) {
             @Override
-            protected Map<String, Object> compressValue(Enchantment object) {
+            public Map<String, Object> serializeValue(Enchantment object) {
                 Map<String,Object> map = new HashMap<>();
                 map.put("name",object.getName());
                 return map;
             }
 
             @Override
-            protected Enchantment decompressValue(Map<String, Object> map) {
+            public Enchantment deserializeValue(Map<String, Object> map) {
                 return Enchantment.getByName((String) map.get("name"));
             }
         });
         serializers.add(new Serializer<PotionEffectType>("PotionEffectType",PotionEffectType.class) {
             @Override
-            protected Map<String, Object> compressValue(PotionEffectType object) {
+            public Map<String, Object> serializeValue(PotionEffectType object) {
                 Map<String,Object> map = new HashMap<>();
                 map.put("name",object.getName());
                 return map;
             }
 
             @Override
-            protected PotionEffectType decompressValue(Map<String, Object> map) {
+            public PotionEffectType deserializeValue(Map<String, Object> map) {
                 return PotionEffectType.getByName((String) map.get("name"));
             }
         });
