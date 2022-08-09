@@ -3,9 +3,21 @@ import java.util.Map;
 
 public abstract class Serializer<T> {
 
+    /**
+     * The serializer's name
+     */
     public final String Name;
+
+    /**
+     * The serializer's type
+     */
     public final Class Type;
 
+    /**
+     *
+     * @param name a given name
+     * @param type a given type
+     */
     public Serializer(String name,Class type){
         this.Name = name;
         this.Type = type;

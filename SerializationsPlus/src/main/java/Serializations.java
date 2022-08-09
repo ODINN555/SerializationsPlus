@@ -15,6 +15,9 @@ import java.util.Map;
 public class Serializations {
 
 
+    /**
+     * The serializers
+     */
     public static final Serializers serializers = new Serializers();
 
 
@@ -62,7 +65,7 @@ public class Serializations {
     /**
      *
      * @param arr a given byte[]
-     * @return the array deserialized, preferably to the deserializeTo class
+     * @return the array deserialized
      */
     public static Object deserialize(byte[] arr) {
         if (arr == null)
