@@ -38,52 +38,47 @@ public class Serializations {
     public static byte[] serialize(Object obj){
         if(obj == null)
             return null;
+
+        Object toSerialize = obj;
+
         Class c = obj.getClass();
-        while(c != null)
-        if(serializers.contains(c)) {
-            Serializer serial = serializers.get(c);
-            byte[] arr = serial.serializeValue(obj);
-            return arr;
-        }else c = c.getSuperclass();
+        if(serializers.contains(c))
+            toSerialize = new SerializedMap(serializers.get(c).serializeValue(toSerialize),serializers.get(c).Name);
         ByteArrayOutputStream byteOut = new ByteArrayOutputStream();
         try {
             BukkitObjectOutputStream bukkitOut = new BukkitObjectOutputStream(byteOut);
-            bukkitOut.writeObject(obj);
+            bukkitOut.writeObject(toSerialize);
             bukkitOut.flush();
 
             return byteOut.toByteArray();
         } catch (IOException e) {
-            System.out.println("There was no Serializer for "+obj.getClass()+" and it couldn't be serialized. make sure there are no errors or you need to make a serializer!");
+            System.out.println("There was no Serializer for "+toSerialize.getClass()+" and it couldn't be serialized. make sure there are no errors or you need to make a serializer!");
             e.printStackTrace();
             return null;
         }
     }
 
-    /**
-     *
-     * @param arr a given byte[]
-     * @return the array deserialized
-     */
-    public static Object deserialize(byte[] arr){
-        return deserialize(arr,null);
-    }
 
     /**
      *
      * @param arr a given byte[]
-     * @param deserializeTo a given class to try to deserialize to
      * @return the array deserialized, preferably to the deserializeTo class
      */
-    public static Object deserialize(byte[] arr,Class deserializeTo) {
+    public static Object deserialize(byte[] arr) {
         if (arr == null)
             return null;
-        if (deserializeTo != null && serializers.contains(deserializeTo))
-            return serializers.get(deserializeTo).deserializeValue(arr);
+
         ByteArrayInputStream byteIn = new ByteArrayInputStream(arr);
         try {
             BukkitObjectInputStream bukkitIn = new BukkitObjectInputStream(byteIn);
+            Object obj = bukkitIn.readObject();
 
-            return bukkitIn.readObject();
+            if(obj instanceof SerializedMap) {
+                SerializedMap map = (SerializedMap) obj;
+                return (serializers.get(map.Name).deserializeValue(map.Values));
+            }
+
+            return obj;
         } catch (IOException | ClassNotFoundException e) {
             System.out.println("Could not deserialize object, could be not serializable.");
 
