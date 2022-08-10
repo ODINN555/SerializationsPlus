@@ -1,4 +1,4 @@
-
+package Serializations;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.util.io.BukkitObjectInputStream;
