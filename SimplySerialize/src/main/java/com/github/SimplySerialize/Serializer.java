@@ -1,4 +1,4 @@
-package Serializations;
+package com.github.SimplySerialize;
 import java.util.HashMap;
 import java.util.Map;
 

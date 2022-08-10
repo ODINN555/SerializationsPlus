@@ -1,4 +1,4 @@
-package Serializations;
+package com.github.SimplySerialize;
 import java.io.Serializable;
 import java.util.Map;
 

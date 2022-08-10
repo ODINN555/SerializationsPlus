@@ -1,16 +1,10 @@
-package Serializations;
-import org.bukkit.enchantments.Enchantment;
-import org.bukkit.potion.PotionEffectType;
+package com.github.SimplySerialize;
 import org.bukkit.util.io.BukkitObjectInputStream;
 import org.bukkit.util.io.BukkitObjectOutputStream;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 public class Serializations {
 

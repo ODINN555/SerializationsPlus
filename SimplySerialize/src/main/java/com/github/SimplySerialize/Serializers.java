@@ -1,13 +1,7 @@
-package Serializations;
+package com.github.SimplySerialize;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
-import org.bukkit.enchantments.Enchantment;
-import org.bukkit.inventory.Inventory;
-import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.ItemMeta;
-import org.bukkit.material.MaterialData;
-import org.bukkit.potion.PotionEffectType;
 
 import java.util.*;
 
